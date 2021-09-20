@@ -66,6 +66,8 @@ then
     echo "ARG ARTIFACT" >> Dockerfile
     echo "COPY $ARTIFACT ./$ARTIFACT" >> Dockerfile
 
+    cat Dockerfile
+
     # Add file to image
     docker build -t $IMAGE_NAME --build-arg ARTIFACT=$ARTIFACT .
 
