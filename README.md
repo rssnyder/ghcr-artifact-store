@@ -18,11 +18,11 @@ inputs:
     description: 'GET or PUT. Defaults to GET.'
     required: false
     default: GET
-  source:
-    description: 'Name of the file to act upon'
+  artifact:
+    description: 'Artifact to GET or PUT'
     required: true
   tag:
-    description: 'Tag for image when pushed to ghcr. Defaults to latest.'
+    description: 'Tag for image when pushed to ghcr. Defaults to artifacts.'
     required: false
     default: artifacts
   image:
@@ -33,10 +33,9 @@ inputs:
     description: 'Username for pushing to ghcr. Defaults to the user who trigered the workflow.'
     required: false
     default: ''
-  registry_token:
-    description: 'Token for pushing to ghcr. Defaults to the built in GITHUB_TOKEN.'
-    required: false
-    default: ''
+  token:
+    description: 'Token for pushing to ghcr.'
+    required: true
 ```
 
 ### put
@@ -46,6 +45,7 @@ inputs:
   with:
     method: PUT
     artifact: state.json
+    token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ### get
@@ -54,7 +54,12 @@ inputs:
 - uses: rssnyder/ghcr-artifact-store
   with:
     artifact: state.json
+    token: ${{ secrets.GITHUB_TOKEN }}
 ```
+
+## example
+
+See an example of storing terraform state using this method [here](https://github.com/rssnyder/isengard/blob/master/.github/workflows/terraform.yml#L28).
 
 ## bootstraping
 

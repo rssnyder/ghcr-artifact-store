@@ -1,0 +1,40 @@
+name: 'ghcr-artifact-store'
+description: 'Using GHCR to store artifacts'
+branding:
+  icon: archive
+  color: orange
+inputs:
+  method:
+    description: 'GET or PUT. Defaults to GET.'
+    required: false
+    default: GET
+  artifact:
+    description: 'Artifact to GET or PUT'
+    required: true
+  tag:
+    description: 'Tag for image when pushed to ghcr. Defaults to artifacts.'
+    required: false
+    default: artifacts
+  image:
+    description: 'Image to store. Defaults to ghcr.io/<owner>/<repo>.'
+    required: false
+    default: ''
+  registry_user:
+    description: 'Username for pushing to ghcr. Defaults to the user who trigered the workflow.'
+    required: false
+    default: ''
+  token:
+    description: 'Token for pushing to ghcr.'
+    required: true
+runs:
+  using: "composite"
+  steps: 
+    - shell: bash
+      run: "${{ github.action_path }}/action.sh"
+      env:
+        METHOD: ${{ inputs.method }}
+        ARTIFACT: ${{ inputs.artifact }}
+        TAG: ${{ inputs.tag }}
+        IMAGE: ${{ inputs.image }}
+        REGISTRY_USER: ${{ inputs.registry_user }}
+        TOKEN: ${{ inputs.token }}
