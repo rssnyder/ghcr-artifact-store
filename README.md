@@ -58,6 +58,10 @@ inputs:
     token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
+## example
+
+See an example of storing terraform state using this method [here](https://github.com/rssnyder/isengard/blob/master/.github/workflows/terraform.yml#L28).
+
 ## bootstraping
 
 To bootstrap an inital image for your repository, grab a github PAT with `packages:write` and set `GITHUB_TOKEN` to it and do the following steps locally:
