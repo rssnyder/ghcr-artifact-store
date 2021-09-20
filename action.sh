@@ -7,11 +7,6 @@ then
       REGISTRY_USER=$GITHUB_ACTOR
 fi
 
-if [ -z "$REGISTRY_TOKEN" ]
-then
-      REGISTRY_TOKEN=$GITHUB_TOKEN
-fi
-
 if [ -z "$METHOD" ]
 then
       METHOD="GET"
@@ -36,6 +31,9 @@ fi
 IMAGE_NAME="$IMAGE:$TAG"
 
 echo "--Targeting: $IMAGE_NAME\n--User: $REGISTRY_USER\n--Dir: $PWD"
+
+# Log into ghcr
+echo $TOKEN | docker login ghcr.io -u $REGISTRY_USER --password-stdin
 
 if [ "$METHOD" = "GET" ]
 then
@@ -70,9 +68,6 @@ then
 
     # Add file to image
     docker build -t $IMAGE_NAME --build-arg ARTIFACT=$ARTIFACT .
-
-    # Log into ghcr
-    echo $REGISTRY_TOKEN | docker login ghcr.io -u $REGISTRY_USER --password-stdin
 
     # Upload new version
     docker push $IMAGE_NAME

@@ -23,10 +23,9 @@ inputs:
     description: 'Username for pushing to ghcr. Defaults to the user who trigered the workflow.'
     required: false
     default: ''
-  registry_token:
-    description: 'Token for pushing to ghcr. Defaults to the built in GITHUB_TOKEN.'
-    required: false
-    default: ''
+  token:
+    description: 'Token for pushing to ghcr.'
+    required: true
 runs:
   using: "composite"
   steps: 
@@ -38,4 +37,4 @@ runs:
         TAG: ${{ inputs.tag }}
         IMAGE: ${{ inputs.image }}
         REGISTRY_USER: ${{ inputs.registry_user }}
-        REGISTRY_TOKEN: ${{ inputs.registry_token }}
+        TOKEN: ${{ inputs.token }}

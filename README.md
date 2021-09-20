@@ -46,6 +46,7 @@ inputs:
   with:
     method: PUT
     artifact: state.json
+    token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ### get
@@ -54,6 +55,7 @@ inputs:
 - uses: rssnyder/ghcr-artifact-store
   with:
     artifact: state.json
+    token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ## bootstraping
