@@ -2,6 +2,9 @@
 
 Use github container registry (or any container registry) to store artifacts for your github actions workflows
 
+[![release](https://img.shields.io/github/v/release/rssnyder/ghcr-artifact-store?sort=semver&logo=github&color=blue)](https://github.com/rssnyder/ghcr-artifact-store/releases/latest)
+[![.github/workflows/test.yml](https://github.com/rssnyder/ghcr-artifact-store/actions/workflows/test.yml/badge.svg)](https://github.com/rssnyder/ghcr-artifact-store/actions/workflows/test.yml)
+
 ## setup
 
 You will need access to publish to github packages from your actions workflow. You can use the default `GITHUB_TOKEN` or a PAT.
@@ -41,7 +44,7 @@ inputs:
 ### put
 
 ```yaml
-- uses: rssnyder/ghcr-artifact-store
+- uses: rssnyder/ghcr-artifact-store@0.1.0
   with:
     method: PUT
     artifact: state.json
@@ -51,7 +54,7 @@ inputs:
 ### get
 
 ```yaml
-- uses: rssnyder/ghcr-artifact-store
+- uses: rssnyder/ghcr-artifact-store@0.1.0
   with:
     artifact: state.json
     token: ${{ secrets.GITHUB_TOKEN }}
